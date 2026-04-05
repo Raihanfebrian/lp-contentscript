@@ -1686,15 +1686,7 @@ if (cdHours && cdMinutes && cdSeconds) {
         });
     }
 
-    // ── State Awal ──
-    if (cdEnd - now <= 0) {
-        if (!chanceUsed) showSecondChance();
-        else              showFullyExpired();
-    } else {
-        startTicker();
-    }
-
-    // ── Ticker ──
+        // ── Ticker (DIPINDAHKAN KE ATAS) ──
     const updateCD = () => {
         let diff = cdEnd - Date.now();
         if (diff <= 0) {
@@ -1709,6 +1701,14 @@ if (cdHours && cdMinutes && cdSeconds) {
         cdMinutes.textContent = String(m).padStart(2, '0');
         cdSeconds.textContent = String(s).padStart(2, '0');
     };
+
+    // ── State Awal (DIPERBAIKI) ──
+    if (cdEnd - now <= 0) {
+        if (!chanceUsed) showSecondChance();
+        else              showFullyExpired();
+    } else {
+        showPromo(); // DIPERBAIKI: Dari startTicker() menjadi showPromo()
+    }
 }
 
         // Sales Popup — social proof notification
